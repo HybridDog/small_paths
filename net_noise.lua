@@ -1,4 +1,4 @@
---net_noise v2
+--net_noise v3
 
 local function get_random(a, b, seed)
 	return PseudoRandom(math.abs(a+b*5)+seed)
@@ -25,12 +25,11 @@ function net_noise(minp, maxp, s, seed)
 	for x = p1.x, p2.x, s do
 		for z = p1.z, p2.z, s do
 			local p = tab[x.." "..z]
-			p.y = 0
 			for _,p2 in pairs({tab[x+s.." "..z], tab[x.." "..z+s]}) do
 				if p2 then
-					p2.y = 0
-					for _,pos in pairs(vector.line(p, p2)) do
-						tab2[pos.x.." "..pos.z] = true
+					local line = vector.twoline(p2.x-p.x, p2.z-p.z)
+					for _,pos in pairs(line) do
+						tab2[pos[1]+p.x.." "..pos[2]+p.z] = true
 					end
 				end
 			end
