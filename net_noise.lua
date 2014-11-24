@@ -50,7 +50,7 @@ minetest.register_node("ac:nmg", {
 	description = "nmg",
 	tiles = {"ac_block.png"},
 	groups = {snappy=1,bendy=2,cracky=1},
-	sounds = default_stone_sounds,
+	sounds = default.node_sound_stone_defaults(),
 	on_construct = function(pos)
 		local minp = vector.subtract(pos, 55)
 		local nse = net_noise(minp, vector.add(pos, 55), 15, 1)
