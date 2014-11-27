@@ -1,5 +1,7 @@
 --net_noise v3
 
+net_noise_tab = nil
+
 local function get_random(a, b, seed)
 	return PseudoRandom(math.abs(a+b*5)+seed)
 end
