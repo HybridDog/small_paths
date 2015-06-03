@@ -1,5 +1,6 @@
 dofile(minetest.get_modpath("small_paths").."/net_noise.lua")
 
+local c_stone = minetest.get_content_id("default:dirt_with_grass")
 local c_cobble = minetest.get_content_id("default:cobble")
 local c_mossycobble = minetest.get_content_id("default:mossycobble")
 local cs_ignored = {
@@ -30,7 +31,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local t1 = os.clock()
 
 	local pr = PseudoRandom(seed+68)
-	net_noise(minp, maxp, 2014, string.sub(seed, 1, 3))
+	net_noise(minp, maxp, 20, string.sub(seed, 1, 3))
 
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 	local data = vm:get_data()
@@ -39,6 +40,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 
 	for z = minp.z,maxp.z do
 		for x = minp.x,maxp.x do
+			--data[area:index(x, 1, z)] = c_stone
 			local ran = pr:next(1,9)
 			if ran ~= 1
 			and net_noise_tab[x.." "..z] then

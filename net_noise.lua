@@ -11,7 +11,7 @@ local function olo(p, s)
 end
 
 function net_noise(minp, maxp, s, seed)
-	local p1 = olo(vector.subtract(minp, s), s)
+	local p1 = olo(minp, s)
 	local p2 = olo(vector.add(maxp, s), s)
 	--local maxp = vector.add(minp, 15)
 
@@ -28,11 +28,9 @@ function net_noise(minp, maxp, s, seed)
 		for z = p1.z, p2.z, s do
 			local p = tab[x.." "..z]
 			for _,p2 in pairs({tab[x+s.." "..z], tab[x.." "..z+s]}) do
-				if p2 then
-					local line = vector.twoline(p2.x-p.x, p2.z-p.z)
-					for _,pos in pairs(line) do
-						tab2[pos[1]+p.x.." "..pos[2]+p.z] = true
-					end
+				local line = vector.twoline(p2.x-p.x, p2.z-p.z)
+				for _,pos in pairs(line) do
+					tab2[pos[1]+p.x.." "..pos[2]+p.z] = true
 				end
 			end
 		end
