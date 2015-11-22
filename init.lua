@@ -31,7 +31,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local t1 = os.clock()
 
 	local pr = PseudoRandom(seed+68)
-	net_noise(minp, maxp, 2014, string.sub(seed, 1, 3))
+	--net_noise(minp, maxp, 2014, string.sub(seed, 1, 3))
+	net_noise(minp, maxp, 2014, string.sub(5213, 1, 3))
 
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 	local data = vm:get_data()
