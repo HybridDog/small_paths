@@ -11,7 +11,7 @@ local function olo(p, s)
 end
 
 function net_noise(minp, maxp, s, seed)
-	local p1 = olo(minp, s)
+	local p1 = olo(vector.subtract(minp, s), s)
 	local p2 = olo(vector.add(maxp, s), s)
 	--local maxp = vector.add(minp, 15)
 
