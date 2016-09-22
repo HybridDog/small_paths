@@ -46,9 +46,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			if ran ~= 1
 			and net_noise_tab[x.." "..z] then
 				local ground
-				local p
-				for y = maxp.y,minp.y,-1 do
-					p = area:index(x, y, z)
+				local p = area:index(x, maxp.y, z)
+				for _ = maxp.y,minp.y,-1 do
 					local nd = data[p]
 					if not table_contains(cs_ignored, nd) then
 						if table_contains(cs_ground, nd) then
@@ -56,6 +55,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						end
 						break
 					end
+					p = p - area.ystride
 				end
 				if ground then
 					if ran <= 4 then
